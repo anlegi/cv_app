@@ -18,7 +18,10 @@ function CVBuilder() {
   }
 
   const handleEducationalInfo = (data) => {
-    setCvData(prevData => ({ ...prevData, educationalInfo: data }))
+    setCvData(prevData => ({
+        ...prevData,
+        educationalInfo: data
+    }));
   }
 
   const handlePracticalInfo = (data) => {

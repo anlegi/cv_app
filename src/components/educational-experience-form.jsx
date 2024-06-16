@@ -6,15 +6,47 @@ function EducationalInfoForm({ onSubmit }) {
     schoolName: "",
     titleStudy: "",
     dateStudy: "",
-    description: ""
+    descriptions: [""]
   })
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+  const handleChange = (e, index) => {
+    if (e.target.name === "description") {
+        // Handle the change for descriptions
+        const newDescriptions = [...formData.descriptions];
+        newDescriptions[index] = e.target.value;
+        setFormData({
+            ...formData,
+            descriptions: newDescriptions
+        })
+        onSubmit({ ...formData, descriptions: newDescriptions })
+    } else {
+        const newFormData = { ...formData, [e.target.name]: e.target.value };
+        setFormData(newFormData);
+        // Propagate changes immediately
+        onSubmit(newFormData);
+    }
   }
+
+  const handleAddDescription = () => {
+    setFormData(prevFormData => ({
+        ...prevFormData,
+        descriptions: [...prevFormData.descriptions, ""]
+    }));
+  };
+
+  const handleRemoveDescription = (index) => {
+    const filteredDescriptions = formData.descriptions.filter((_, i) => i !== index);
+    setFormData(prevFormData => ({
+        ...prevFormData,
+        descriptions: filteredDescriptions
+    }));
+    // Propagate changes immediately
+    onSubmit({ ...formData, descriptions: filteredDescriptions });
+  };
+
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -54,15 +86,22 @@ function EducationalInfoForm({ onSubmit }) {
         />
       </label>
       <br />
-      <label>
-        Description
-        <input
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </label>
+      {formData.descriptions.map((description, index) => (
+        <div key={index}>
+            <label>
+                Description:
+                <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={(e) => handleChange(e, index)}
+                />
+            </label>
+            <button type="button" onClick={() => handleRemoveDescription(index)}>Remove</button>
+        </div>
+      ))}
+      <br />
+      <button type="button" onClick={handleAddDescription}>Add Another Description</button>
       <br />
       <button type="submit">Submit</button>
     </form>
