@@ -9,6 +9,14 @@ function PracticalInfoForm({ onSubmit }) {
     dateWork: "",
   })
 
+  const [isCollapsed, setIsCollapsed] = useState(true) //form expanded or collapsed
+
+  const toggleFormVisibility = () => {
+    setIsCollapsed(!isCollapsed)
+  }
+
+
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,50 +30,56 @@ function PracticalInfoForm({ onSubmit }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Experience</h2>
-      <label>
-        Name
-        <input
-          type="text"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Position
-        <input
-          type="text"
-          name="positionTitle"
-          value={formData.positionTitle}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Time
-        <input
-          type="text"
-          name="dateWork"
-          value={formData.dateWork}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Description
-        <input
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Experience {isCollapsed ? '▼ ' : '▲ '}
+      </h2>
+      {!isCollapsed && (
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            type="text"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label>
+          Position
+          <input
+            type="text"
+            name="positionTitle"
+            value={formData.positionTitle}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label>
+          Time
+          <input
+            type="text"
+            name="dateWork"
+            value={formData.dateWork}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label>
+          Description
+          <input
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      )}
+    </div>
   )
 }
 
