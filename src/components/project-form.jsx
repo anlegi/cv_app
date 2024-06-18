@@ -7,6 +7,14 @@ function ProjectInfoForm({ onSubmit }) {
     description: "",
   })
 
+
+  const [isCollapsed, setIsCollapsed] = useState(true) //form expanded or collapsed
+
+  const toggleFormVisibility = () => {
+    setIsCollapsed(!isCollapsed)
+  }
+
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -20,8 +28,12 @@ function ProjectInfoForm({ onSubmit }) {
   }
 
   return (
+  <div>
+    <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Projects {isCollapsed ? '▼ ' : '▲ '}
+    </h2>
+    {!isCollapsed && (
     <form onSubmit={handleSubmit}>
-      <h2>Projects</h2>
       <label>
         Name
         <input
@@ -54,6 +66,8 @@ function ProjectInfoForm({ onSubmit }) {
       <br />
       <button type="submit">Submit</button>
     </form>
+    )}
+  </div>
   )
 }
 
