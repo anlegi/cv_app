@@ -8,28 +8,34 @@ import CVDisplay from "./cv-display.jsx"
 function CVBuilder() {
   const [cvData, setCvData] = useState({
     personalInfo: {},
-    educationalInfo: {},
-    practicalInfo: {},
-    projectInfo: {}
+    educationalInfo: [],
+    practicalInfo: [],
+    projectInfo: [],
   })
+
 
   const handlePersonalInfo = (data) => {
     setCvData(prevData => ({ ...prevData, personalInfo: data }))
   }
 
-  const handleEducationalInfo = (data) => {
+  const handleEducationalInfo = (newData) => {
     setCvData(prevData => ({
         ...prevData,
-        educationalInfo: data
+        educationalInfo: newData
     }));
   }
 
-  const handlePracticalInfo = (data) => {
-    setCvData(prevData => ({ ...prevData, practicalInfo: data }))
+  const handlePracticalInfo = (newData) => {
+    setCvData(prevData => ({
+        ...prevData,
+        practicalInfo: newData
+    }));
   }
 
-  const handleProjectInfo = (data) => {
-    setCvData(prevData => ({ ...prevData, projectInfo: data }))
+  const handleProjectInfo = (newData) => {
+    setCvData(prevData => ({
+      ...prevData,
+      projectInfo: newData }))
   }
 
   return (

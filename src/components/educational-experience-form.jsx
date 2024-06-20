@@ -1,125 +1,132 @@
-import {useState} from "react";
+import { useState } from "react";
 
-// school name, title of study and date of study
 function EducationalInfoForm({ onSubmit }) {
-  const [formData, setFormData] = useState({
-    schoolName: "",
-    titleStudy: "",
-    dateStudy: "",
-    descriptions: [""]
-  })
+    const [educations, setEducations] = useState([{
+        schoolName: "",
+        titleStudy: "",
+        dateStudy: "",
+        descriptions: [""]
+    }]);
 
-  const [isCollapsed, setIsCollapsed] = useState(true) //form expanded or collapsed
+    const [isCollapsed, setIsCollapsed] = useState(true); // One collapse state for all education forms
 
-  const toggleFormVisibility = () => {
-    setIsCollapsed(!isCollapsed)
-  }
-
-
-
-  const handleChange = (e, index) => {
-    if (e.target.name === "description") {
-        // Handle the change for descriptions
-        const newDescriptions = [...formData.descriptions];
-        newDescriptions[index] = e.target.value;
-        setFormData({
-            ...formData,
-            descriptions: newDescriptions
-        })
-        onSubmit({ ...formData, descriptions: newDescriptions })
-    } else {
-        const newFormData = { ...formData, [e.target.name]: e.target.value };
-        setFormData(newFormData);
-        // Propagate changes immediately
-        onSubmit(newFormData);
+    const toggleFormVisibility = () => {
+        setIsCollapsed(!isCollapsed); // Toggles visibility for all forms
     }
-  }
 
-  const handleAddDescription = () => {
-    setFormData(prevFormData => ({
-        ...prevFormData,
-        descriptions: [...prevFormData.descriptions, ""]
-    }));
-  };
+    const handleChange = (e, index, descIndex) => {
+        const newEducations = [...educations]
+        if (e.target.name === "description") {
+            newEducations[index].descriptions[descIndex] = e.target.value
+        } else {
+            newEducations[index][e.target.name] = e.target.value
+        }
+        setEducations(newEducations)
+    }
 
-  const handleRemoveDescription = (index) => {
-    const filteredDescriptions = formData.descriptions.filter((_, i) => i !== index);
-    setFormData(prevFormData => ({
-        ...prevFormData,
-        descriptions: filteredDescriptions
-    }));
-    // Propagate changes immediately
-    onSubmit({ ...formData, descriptions: filteredDescriptions });
-  };
+    const handleAddDescription = (index) => {
+        const newEducations = educations.map((edu, i) => {
+            if (i === index) {
+                return { ...edu, descriptions: [...edu.descriptions, ""] };
+            }
+            return edu;
+        })
+        setEducations(newEducations);
+    }
+
+    const handleRemoveDescription = (index, descIndex) => {
+        const newEducations = educations.map((edu, i) => {
+            if (i === index) {
+                return { ...edu, descriptions: edu.descriptions.filter((_, j) => j !== descIndex) }
+            }
+            return edu
+        })
+        setEducations(newEducations)
+        onSubmit(newEducations)
+    }
+
+    const handleAddEducation = () => {
+      setEducations(prevEducations => [
+          ...prevEducations,
+          {
+              schoolName: "",
+              titleStudy: "",
+              dateStudy: "",
+              descriptions: [""],
+              collapsed: true
+          }
+      ])
+    }
 
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(educations);
+    };
 
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    onSubmit(formData)
-  }
-
-  return (
-    <div>
-      <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-      Education {isCollapsed ? '▼ ' : '▲ '}
-      </h2>
-      {!isCollapsed && (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name
-          <input
-            type="text"
-            name="schoolName"
-            value={formData.schoolName}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Major
-          <input
-            type="text"
-            name="titleStudy"
-            value={formData.titleStudy}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Time
-          <input
-            type="text"
-            name="dateStudy"
-            value={formData.dateStudy}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        {formData.descriptions.map((description, index) => (
-          <div key={index}>
-              <label>
-                  Description:
-                  <input
-                      type="text"
-                      name="description"
-                      value={description}
-                      onChange={(e) => handleChange(e, index)}
-                  />
-              </label>
-              <button type="button" onClick={() => handleRemoveDescription(index)}>Remove</button>
-          </div>
-        ))}
-        <br />
-        <button type="button" onClick={handleAddDescription}>Add Another Description</button>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      )}
-    </div>
-  )
+    return (
+        <div>
+            <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer' }}>
+                Education {isCollapsed ? '▼' : '▲'}
+            </h2>
+            {!isCollapsed && (
+                <div>
+                    {educations.map((education, index) => (
+                        <form key={index} onSubmit={handleSubmit}>
+                            <label>
+                                Name
+                                <input
+                                    type="text"
+                                    name="schoolName"
+                                    value={education.schoolName}
+                                    onChange={(e) => handleChange(e, index)}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Major
+                                <input
+                                    type="text"
+                                    name="titleStudy"
+                                    value={education.titleStudy}
+                                    onChange={(e) => handleChange(e, index)}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Time
+                                <input
+                                  type="text"
+                                  name="dateStudy"
+                                  value={education.dateStudy}
+                                  onChange={(e) => handleChange(e, index)}
+                                />
+                            </label>
+                            <br />
+                            {education.descriptions.map((description, descIndex) => (
+                                <div key={descIndex}>
+                                    <label>
+                                        Description
+                                        <input
+                                            type="text"
+                                            name="description"
+                                            value={description}
+                                            onChange={(e) => handleChange(e, index, descIndex)}
+                                        />
+                                    </label>
+                                    <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Description</button>
+                                </div>
+                            ))}
+                            <button type="button" onClick={() => handleAddDescription(index)}>Add Another Description</button>
+                            <br />
+                        </form>
+                    ))}
+                    <button onClick={handleAddEducation}>Add Another Education</button>
+                    <button type="submit" onClick={handleSubmit}>Submit All</button>
+                </div>
+            )}
+        </div>
+    );
 }
 
-export default EducationalInfoForm;
+export default EducationalInfoForm
