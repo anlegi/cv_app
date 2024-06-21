@@ -2,8 +2,21 @@ function CVDisplay({ data }) {
   return (
       <div className="cv-container">
           <h2> {data.personalInfo.firstName || "Alexander"} {data.personalInfo.lastName || "Muster"} </h2>
-          <p>{data.personalInfo.email || "alexander@muster.com"} * {data.personalInfo.phone || "+123 444 888"} * {data.personalInfo.location || "Paris, France"}</p>
-          <p>{data.personalInfo.contact1 || "github.com/alexandermuster"}</p>
+          <p>{data.personalInfo.email || "alexander@muster.com"} | {data.personalInfo.phone || "+123 444 888"} | {data.personalInfo.location || "Paris, France"}</p>
+          <p>
+            {data.personalInfo.contacts && data.personalInfo.contacts.length > 0 ? (
+              data.personalInfo.contacts.map((contact, index) => (
+                <span key={index}>
+                  {contact || "No additional contact information available."}
+                  {index < data.personalInfo.contacts.length - 1 ? ' | ' : ''}
+                </span>
+              ))
+            ) : (
+              <span>
+                <span>github.com/alexandermuster</span> | <span>instagram.com/alexandermuster</span>
+              </span>
+            )}
+          </p>
 
           <h2>Education</h2>
           {data.educationalInfo && data.educationalInfo.length > 0 ? (
@@ -75,11 +88,13 @@ function CVDisplay({ data }) {
                     </div>
                 ))
             ) : (
-                <ul>
-                  <li>Developed a cross-platform mobile banking app that allows users to track transactions, manage accounts, and integrate their banking with personal finance tools.</li>
-                  <li>Implemented advanced security measures to ensure user data protection.</li>
-                  <li>Utilized React Native for seamless iOS and Android functionality.</li>
-                </ul>
+              <div>
+                <h4>Mobile Banking Application</h4>
+                <p>Apr 2023 - Jun 2023</p>
+                <li>Developed a cross-platform mobile banking app that allows users to track transactions, manage accounts, and integrate their banking with personal finance tools.</li>
+                <li>Implemented advanced security measures to ensure user data protection.</li>
+                <li>Utilized React Native for seamless iOS and Android functionality.</li>
+              </div>
             )}
       </div>
   );

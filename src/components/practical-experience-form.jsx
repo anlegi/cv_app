@@ -83,21 +83,21 @@ function PracticalInfoForm({ onSubmit }) {
               </label>
               <br />
               <label>
-                Position Title
+                Time
                 <input
                   type="text"
-                  name="positionTitle"
-                  value={experience.positionTitle}
+                  name="dateWork"
+                  value={experience.dateWork}
                   onChange={(e) => handleChange(e, index)}
                 />
               </label>
               <br />
               <label>
-                Work Dates
+                Position
                 <input
                   type="text"
-                  name="dateWork"
-                  value={experience.dateWork}
+                  name="positionTitle"
+                  value={experience.positionTitle}
                   onChange={(e) => handleChange(e, index)}
                 />
               </label>

@@ -7,7 +7,7 @@ function PersonalInfoForm({ onSubmit }) {
     email: "",
     phone: "",
     location: "",
-    contact1: ""
+    contacts: [""],
   })
 
   const [isCollapsed, setIsCollapsed] = useState(true) //form expanded or collapsed
@@ -16,11 +16,25 @@ function PersonalInfoForm({ onSubmit }) {
     setIsCollapsed(!isCollapsed)
   }
 
-  const handleChange = (e) => {
-    setFormData({ // update the state with the new value
-      ...formData, // spread operator (...formData) ensures that the other values in the state are not overwritten
-      [e.target.name]: e.target.value
-    })
+  const handleChange = (e, index) => {
+    if (index !== undefined) {
+      // handle changes to the contacts array
+      const newContacts = [...formData.contacts];
+      newContacts[index] = e.target.value
+      setFormData({ ...formData, contacts: newContacts })
+    } else {
+      // Handle changes to other fields
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  }
+
+  const handleAddContact = () => {
+    setFormData({ ...formData, contacts: [...formData.contacts, ""] })
+  };
+
+  const handleRemoveContact = (index) => {
+    const newContacts = formData.contacts.filter((_, idx) => idx !== index)
+    setFormData({ ...formData, contacts: newContacts })
   }
 
   const handleSubmit = (e) => {
@@ -85,15 +99,24 @@ function PersonalInfoForm({ onSubmit }) {
             />
           </label>
           <br />
-          <label>
-            Contact
-            <input
-              type="text"
-              name="contact1"
-              value={formData.contact1}
-              onChange={handleChange}
-            />
-          </label>
+          {formData.contacts.map((contact, index) => (
+            <div>
+              <label>
+                Contact
+                <input
+                  type="text"
+                  name="contact"
+                  value={contact}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </label>
+              {formData.contacts.length > 1 && (
+                <button type="button" onClick={() => handleRemoveContact(index)}>Remove Contact</button>
+              )}
+              <br />
+            </div>
+          ))}
+          <button type="button" onClick={handleAddContact}>Add Another Contact</button>
           <br />
           <button type="submit">Submit</button>
         </form>

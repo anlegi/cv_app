@@ -84,16 +84,6 @@ function EducationalInfoForm({ onSubmit }) {
                             </label>
                             <br />
                             <label>
-                                Major
-                                <input
-                                    type="text"
-                                    name="titleStudy"
-                                    value={education.titleStudy}
-                                    onChange={(e) => handleChange(e, index)}
-                                />
-                            </label>
-                            <br />
-                            <label>
                                 Time
                                 <input
                                   type="text"
@@ -103,10 +93,21 @@ function EducationalInfoForm({ onSubmit }) {
                                 />
                             </label>
                             <br />
+                            <label>
+                                Description
+                                <input
+                                    type="text"
+                                    name="titleStudy"
+                                    value={education.titleStudy}
+                                    onChange={(e) => handleChange(e, index)}
+                                />
+                            </label>
+                            <br />
+
                             {education.descriptions.map((description, descIndex) => (
                                 <div key={descIndex}>
                                     <label>
-                                        Description
+                                        Details
                                         <input
                                             type="text"
                                             name="description"
@@ -114,10 +115,10 @@ function EducationalInfoForm({ onSubmit }) {
                                             onChange={(e) => handleChange(e, index, descIndex)}
                                         />
                                     </label>
-                                    <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Description</button>
+                                    <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Detail</button>
                                 </div>
                             ))}
-                            <button type="button" onClick={() => handleAddDescription(index)}>Add Another Description</button>
+                            <button type="button" onClick={() => handleAddDescription(index)}>Add Another Detail</button>
                             <br />
                         </form>
                     ))}
