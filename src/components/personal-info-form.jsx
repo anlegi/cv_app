@@ -43,82 +43,94 @@ function PersonalInfoForm({ onSubmit }) {
   }
 
   return (
-    <div>
-      <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+    <div className="personal-info">
+      <h2 onClick={toggleFormVisibility}>
       Personal Information {isCollapsed ? '▼ ' : '▲ '}
       </h2>
       {!isCollapsed && (
-        <form onSubmit={handleSubmit}>
-          <label>
-            First Name
+        <form className="personal-info-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <label>
+              First Name
+            </label>
             <input
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
             />
-          </label>
+          </div>
           <br />
-          <label>
-            Last Name
+          <div className="form-row">
+            <label>
+              Last Name
+            </label>
             <input
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
             />
-          </label>
+          </div>
           <br />
-          <label>
-            Email
+          <div className="form-row">
+            <label>
+              Email
+            </label>
             <input
               type="text"
               name="email"
               value={formData.email}
               onChange={handleChange}
             />
-          </label>
+          </div>
           <br />
-          <label>
-            Phone
+          <div className="form-row">
+            <label>
+              Phone
+            </label>
             <input
               type="text"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
             />
-          </label>
+          </div>
           <br />
-          <label>
-            Location
+          <div className="form-row">
+            <label>
+              Location
+            </label>
             <input
               type="text"
               name="location"
               value={formData.location}
               onChange={handleChange}
             />
-          </label>
+          </div>
           <br />
           {formData.contacts.map((contact, index) => (
-            <div>
+            <div className="form-row">
               <label>
                 Contact
+              </label>
                 <input
                   type="text"
                   name="contact"
                   value={contact}
                   onChange={(e) => handleChange(e, index)}
                 />
-              </label>
               {formData.contacts.length > 1 && (
                 <button type="button" onClick={() => handleRemoveContact(index)}>Remove Contact</button>
               )}
               <br />
             </div>
           ))}
-          <button type="button" onClick={handleAddContact}>Add Another Contact</button>
-          <br />
-          <button type="submit">Submit</button>
+          <div className="button-container">
+            <button type="button" onClick={handleAddContact}>Add Another Contact</button>
+            <br />
+            <button type="submit">Submit</button>
+          </div>
         </form>
       )}
     </div>

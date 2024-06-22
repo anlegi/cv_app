@@ -52,7 +52,7 @@ button:focus-visible {
 
 
 .cv-container {
-  width: 210mm; 
+  width: 210mm;
   min-height: 297mm;
   transform: scale(0.75);
   transform-origin: top center;
@@ -66,6 +66,65 @@ button:focus-visible {
   border: 1px solid #d3d3d3;
 }
 
+.personal-info {
+  border: solid grey;
+  border-radius: 10px;
+  min-width: 400px;
+  padding: 15px;
+}
+
+.personal-info h2 {
+  margin: 0 0 10px 0; /* Removes default margin and adjusts bottom margin */
+  padding-left: 15px;
+}
+
+
+.personal-info-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.form-row:first-child {
+  margin-top: 20px;
+}
+
+.form-row label,
+.form-row input {
+  flex: 1; /* Allow both label and input to expand */
+}
+
+.form-row label {
+  margin-right: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-container button {
+  margin-bottom: -15px;
+}
+
+.button-container button:first-child {
+  margin-top: 10px;
+}
+
+.button-container button:last-child {
+  margin-bottom: 4px;
+}
 
 
 
