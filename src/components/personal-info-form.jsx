@@ -10,6 +10,7 @@ function PersonalInfoForm({ onSubmit }) {
     contacts: [""],
   })
 
+
   const [isCollapsed, setIsCollapsed] = useState(true) //form expanded or collapsed
 
   const toggleFormVisibility = () => {
@@ -44,8 +45,13 @@ function PersonalInfoForm({ onSubmit }) {
 
   return (
     <div className="personal-info">
-      <h2 onClick={toggleFormVisibility}>
-      Personal Information {isCollapsed ? '▼ ' : '▲ '}
+      <h2 className="form-header" onClick={toggleFormVisibility}>
+          <span className="form-title">Personal Information</span>
+          <span className="toggle-icon">
+            {isCollapsed
+            ? <i className="fa-solid fa-chevron-down"></i>
+            : <i className="fa-solid fa-chevron-up"></i>}
+          </span>
       </h2>
       {!isCollapsed && (
         <form className="personal-info-form" onSubmit={handleSubmit}>

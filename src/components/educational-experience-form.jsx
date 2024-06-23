@@ -65,69 +65,82 @@ function EducationalInfoForm({ onSubmit }) {
     };
 
     return (
-        <div>
-            <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer' }}>
-                Education {isCollapsed ? '▼' : '▲'}
-            </h2>
-            {!isCollapsed && (
-                <div>
-                    {educations.map((education, index) => (
-                        <form key={index} onSubmit={handleSubmit}>
-                            <label>
-                                Name
-                                <input
-                                    type="text"
-                                    name="schoolName"
-                                    value={education.schoolName}
-                                    onChange={(e) => handleChange(e, index)}
-                                />
-                            </label>
-                            <br />
-                            <label>
-                                Time
-                                <input
-                                  type="text"
-                                  name="dateStudy"
-                                  value={education.dateStudy}
-                                  onChange={(e) => handleChange(e, index)}
-                                />
-                            </label>
-                            <br />
-                            <label>
-                                Description
-                                <input
-                                    type="text"
-                                    name="titleStudy"
-                                    value={education.titleStudy}
-                                    onChange={(e) => handleChange(e, index)}
-                                />
-                            </label>
-                            <br />
+        <div className="educational-info">
+          <h2 className="form-header" onClick={toggleFormVisibility}>
+          <span className="form-title">Education</span>
+          <span className="toggle-icon">
+            {isCollapsed
+            ? <i className="fa-solid fa-chevron-down"></i>
+            : <i className="fa-solid fa-chevron-up"></i>}
+          </span>
+      </h2>
+          {!isCollapsed && (
+              <div>
+                  {educations.map((education, index) => (
+                      <form className="educational-info-form" key={index} onSubmit={handleSubmit}>
+                        <div className="form-row">
+                          <label>
+                            Name
+                          </label>
+                          <input
+                              type="text"
+                              name="schoolName"
+                              value={education.schoolName}
+                              onChange={(e) => handleChange(e, index)}
+                          />
+                        </div>
+                        <br />
+                        <div className="form-row">
+                          <label>
+                            Time
+                          </label>
+                          <input
+                            type="text"
+                            name="dateStudy"
+                            value={education.dateStudy}
+                            onChange={(e) => handleChange(e, index)}
+                          />
+                        </div>
+                        <br />
+                        <div className="form-row">
+                          <label>
+                            Description
+                          </label>
+                          <input
+                              type="text"
+                              name="titleStudy"
+                              value={education.titleStudy}
+                              onChange={(e) => handleChange(e, index)}
+                          />
+                        </div>
+                        <br />
+                        {education.descriptions.map((description, descIndex) => (
+                            <div className="form-row"key={descIndex}>
+                              <label>
+                                Details
+                              </label>
+                              <input
+                                type="text"
+                                name="description"
+                                value={description}
+                                onChange={(e) => handleChange(e, index, descIndex)}
+                              />
 
-                            {education.descriptions.map((description, descIndex) => (
-                                <div key={descIndex}>
-                                    <label>
-                                        Details
-                                        <input
-                                            type="text"
-                                            name="description"
-                                            value={description}
-                                            onChange={(e) => handleChange(e, index, descIndex)}
-                                        />
-                                    </label>
-                                    <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Detail</button>
-                                </div>
-                            ))}
-                            <button type="button" onClick={() => handleAddDescription(index)}>Add Another Detail</button>
-                            <br />
-                        </form>
-                    ))}
-                    <button onClick={handleAddEducation}>Add Another Education</button>
-                    <button type="submit" onClick={handleSubmit}>Submit All</button>
+                            </div>
+                        ))}
+                        <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Detail</button>
+                        <button className="another-detail-btn"type="button" onClick={() => handleAddDescription(index)}>Add Another Detail</button>
+                        <br />
+                    </form>
+                ))}
+                <div className="button-container2">
+                  <button className="another-education-btn" onClick={handleAddEducation}>Add Another Education</button>
+                  <button className="submit-all-btn"type="submit" onClick={handleSubmit}>Submit All</button>
                 </div>
-            )}
-        </div>
-    );
+            </div>
+        )}
+      </div>
+  );
 }
 
 export default EducationalInfoForm
