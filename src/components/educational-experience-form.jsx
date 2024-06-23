@@ -67,13 +67,13 @@ function EducationalInfoForm({ onSubmit }) {
     return (
         <div className="educational-info">
           <h2 className="form-header" onClick={toggleFormVisibility}>
-          <span className="form-title">Education</span>
-          <span className="toggle-icon">
-            {isCollapsed
-            ? <i className="fa-solid fa-chevron-down"></i>
-            : <i className="fa-solid fa-chevron-up"></i>}
-          </span>
-      </h2>
+            <span className="form-title">Education</span>
+            <span className="toggle-icon">
+              {isCollapsed
+              ? <i className="fa-solid fa-chevron-down"></i>
+              : <i className="fa-solid fa-chevron-up"></i>}
+            </span>
+          </h2>
           {!isCollapsed && (
               <div>
                   {educations.map((education, index) => (
@@ -115,7 +115,7 @@ function EducationalInfoForm({ onSubmit }) {
                         </div>
                         <br />
                         {education.descriptions.map((description, descIndex) => (
-                            <div className="form-row"key={descIndex}>
+                            <div className="form-row" key={descIndex}>
                               <label>
                                 Details
                               </label>
@@ -125,21 +125,23 @@ function EducationalInfoForm({ onSubmit }) {
                                 value={description}
                                 onChange={(e) => handleChange(e, index, descIndex)}
                               />
-
+                              <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Detail</button>
                             </div>
                         ))}
-                        <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Detail</button>
-                        <button className="another-detail-btn"type="button" onClick={() => handleAddDescription(index)}>Add Another Detail</button>
+                        <button className="another-detail-btn"type="button" onClick={() => handleAddDescription(index)}>+ Another Detail</button>
                         <br />
-                    </form>
-                ))}
+
+
                 <div className="button-container2">
-                  <button className="another-education-btn" onClick={handleAddEducation}>Add Another Education</button>
+                  <button className="another-education-btn" onClick={handleAddEducation}>+ Another Education</button>
                   <button className="submit-all-btn"type="submit" onClick={handleSubmit}>Submit All</button>
                 </div>
+
+                </form>
+                ))}
             </div>
-        )}
-      </div>
+          )}
+        </div>
   );
 }
 

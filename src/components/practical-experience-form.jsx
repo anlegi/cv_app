@@ -65,8 +65,13 @@ function PracticalInfoForm({ onSubmit }) {
 
   return (
     <div>
-      <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-      Experience {isCollapsed ? '▼' : '▲'}
+      <h2 className="form-header" onClick={toggleFormVisibility}>
+        <span className="form-title">Experience</span>
+        <span className="toggle-icon">
+          {isCollapsed
+          ? <i className="fa-solid fa-chevron-down"></i>
+          : <i className="fa-solid fa-chevron-up"></i>}
+        </span>
       </h2>
       {!isCollapsed && (
         <div>
