@@ -20,7 +20,8 @@ function SkillInfoForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit(skills)
+    console.log("Submitting skills:", skills)
+    onSubmit([...skills])
   };
 
   return (
@@ -61,8 +62,11 @@ function SkillInfoForm({ onSubmit }) {
               </div>
             </form>
           ))}
-          <button onClick={() => setSkills([...skills, { skillName: "", description: "" }])}>Add Another Skill</button>
-          <button className="submit-all-btn" type="submit" onClick={handleSubmit}>Submit All</button>
+          <div className="button-container">
+            <button className="another-skill-btn" onClick={() => setSkills([...skills, { skillName: "", description: "" }])}>Add Skill</button>
+            <br />
+            <button className="submit-all-btn" type="submit" onClick={handleSubmit}>Submit All</button>
+          </div>
         </div>
       )}
     </div>

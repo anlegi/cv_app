@@ -55,7 +55,7 @@ function CVBuilder() {
             <ProjectInfoForm onSubmit={handleProjectInfo} />
             <SkillInfoForm onSubmit={handleSkillInfo} />
         </div>
-        <CVDisplay data={cvData} />
+        <CVDisplay key={cvData.skillInfo.length} data={cvData} />
     </div>
   )
 }

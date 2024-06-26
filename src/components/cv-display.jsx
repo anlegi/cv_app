@@ -1,4 +1,5 @@
 function CVDisplay({ data }) {
+  console.log("Skill Info: ", data.skillInfo);
   return (
       <div className="cv-container">
         <div className="personal-info-display">
@@ -102,8 +103,8 @@ function CVDisplay({ data }) {
             )}
 
             <h2 className="skill-title">Skills</h2>
-            {data.skills && data.skills.length > 0 ? (
-                data.skills.map((skill, index) => (
+            {data.skillInfo && data.skillInfo.length > 0 ? (
+                data.skillInfo.map((skill, index) => (
                     <div key={index}>
                         <h4>{skill.skillName}</h4>
                         <p>{skill.description}</p>

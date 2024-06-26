@@ -127,7 +127,6 @@ function PersonalInfoForm({ onSubmit }) {
                   value={contact}
                   onChange={(e) => handleChange(e, index)}
                 />
-
               <br />
             </div>
           ))}
