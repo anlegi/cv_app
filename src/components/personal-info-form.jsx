@@ -117,7 +117,8 @@ function PersonalInfoForm({ onSubmit }) {
           <br />
           {formData.contacts.map((contact, index) => (
             <div className="form-row">
-              <label>
+              <button className="remove-btn" type="button" onClick={() => handleRemoveContact(index)}><i class="fa-regular fa-trash-can"></i></button>
+              <label className="details">
                 Contact
               </label>
                 <input
@@ -126,14 +127,12 @@ function PersonalInfoForm({ onSubmit }) {
                   value={contact}
                   onChange={(e) => handleChange(e, index)}
                 />
-              {formData.contacts.length > 1 && (
-                <button type="button" onClick={() => handleRemoveContact(index)}>Remove Contact</button>
-              )}
+
               <br />
             </div>
           ))}
           <div className="button-container">
-            <button type="button" onClick={handleAddContact}>Add Another Contact</button>
+            <button type="button" onClick={handleAddContact}>Add Contact</button>
             <br />
             <button type="submit">Submit</button>
           </div>

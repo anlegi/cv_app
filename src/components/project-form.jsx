@@ -61,54 +61,67 @@ function ProjectInfoForm({ onSubmit }) {
   }
 
   return (
-  <div>
-    <h2 onClick={toggleFormVisibility} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-      Projects {isCollapsed ? '▼ ' : '▲ '}
+  <div className="project-info">
+    <h2 className="form-header" onClick={toggleFormVisibility}>
+      <span>Projects</span>
+      <span className="toggle-icon">
+        {isCollapsed
+        ? <i className="fa-solid fa-chevron-down"></i>
+        : <i className="fa-solid fa-chevron-up"></i>}
+      </span>
     </h2>
     {!isCollapsed && (
       <div>
         {projects.map((project, index) => (
-          <form key={index} onSubmit={handleSubmit}>
-            <label>
-              Name
+          <form className="project-info-form" key={index} onSubmit={handleSubmit}>
+            <div className="form-row">
+              <label>
+                Name
+              </label>
               <input
                 type="text"
                 name="projectName"
                 value={project.projectName}
                 onChange={(e) => handleChange(e, index)}
               />
-            </label>
+              </div>
+
             <br />
-            <label>
-              Time
+            <div className="form-row">
+              <label>
+                Time
+              </label>
               <input
                 type="text"
                 name="time"
                 value={project.time}
                 onChange={(e) => handleChange(e, index)}
               />
-            </label>
+            </div>
             <br />
             {project.descriptions.map((description, descIndex) => (
-              <div key={descIndex}>
-                <label>
+              <div className="form-row" key={descIndex}>
+                <button className="remove-btn" type="button" onClick={() => handleRemoveDescription(index, descIndex)}><i class="fa-regular fa-trash-can"></i></button>
+                <label className="details">
                   Description
-                  <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={(e) => handleChange(e, index, descIndex)}
-                  />
                 </label>
-                <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Description</button>
+                <input
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(e) => handleChange(e, index, descIndex)}
+                />
+
               </div>
             ))}
-            <button type="button" onClick={() => handleAddDescription(index)}>Add Another Description</button>
+            <button className="another-detail-btn" type="button" onClick={() => handleAddDescription(index)}>Add Description</button>
             <br />
-          </form>
+            </form>
         ))}
-        <button onClick={handleAddProject}>Add Another Project</button>
-        <button type="submit" onClick={handleSubmit}>Submit All</button>
+        <div className="button-container2">
+          <button className="another-project-btn" onClick={handleAddProject}>Add Project</button>
+          <button className="submit-all-btn" type="submit" onClick={handleSubmit}>Submit</button>
+        </div>
     </div>
     )}
   </div>

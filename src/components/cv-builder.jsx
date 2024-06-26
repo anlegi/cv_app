@@ -40,7 +40,7 @@ function CVBuilder() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div>
+        <div className="components-div">
             <PersonalInfoForm onSubmit={handlePersonalInfo} />
             <EducationalInfoForm onSubmit={handleEducationalInfo} />
             <PracticalInfoForm onSubmit={handlePracticalInfo} />

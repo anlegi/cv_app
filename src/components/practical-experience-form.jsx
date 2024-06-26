@@ -64,7 +64,7 @@ function PracticalInfoForm({ onSubmit }) {
   }
 
   return (
-    <div>
+    <div className="practical-info">
       <h2 className="form-header" onClick={toggleFormVisibility}>
         <span className="form-title">Experience</span>
         <span className="toggle-icon">
@@ -76,57 +76,68 @@ function PracticalInfoForm({ onSubmit }) {
       {!isCollapsed && (
         <div>
           {experiences.map((experience, index) => (
-            <form key={index} onSubmit={handleSubmit}>
-              <label>
-                Company Name
+            <form className="practical-info-form" key={index} onSubmit={handleSubmit}>
+              <div className="form-row">
+                <label>
+                  Company Name
+                </label>
                 <input
                   type="text"
                   name="companyName"
                   value={experience.companyName}
                   onChange={(e) => handleChange(e, index)}
                 />
-              </label>
+              </div>
               <br />
-              <label>
-                Time
+              <div className="form-row">
+                <label>
+                  Time
+                </label>
                 <input
                   type="text"
                   name="dateWork"
                   value={experience.dateWork}
                   onChange={(e) => handleChange(e, index)}
                 />
-              </label>
+              </div>
               <br />
-              <label>
-                Position
+              <div className="form-row">
+                <label>
+                  Position
+                </label>
                 <input
                   type="text"
                   name="positionTitle"
                   value={experience.positionTitle}
                   onChange={(e) => handleChange(e, index)}
                 />
-              </label>
+              </div>
               <br />
               {experience.descriptions.map((description, descIndex) => (
-                <div key={descIndex}>
-                  <label>
+                <div className="form-row" key={descIndex}>
+                  <button className="remove-btn" type="button" onClick={() => handleRemoveDescription(index, descIndex)}><i class="fa-regular fa-trash-can"></i></button>
+                  <label className="details">
                     Description
-                    <input
-                        type="text"
-                        name="description"
-                        value={description}
-                        onChange={(e) => handleChange(e, index, descIndex)}
-                    />
                   </label>
-                  <button type="button" onClick={() => handleRemoveDescription(index, descIndex)}>Remove Description</button>
+                  <input
+                      type="text"
+                      name="description"
+                      value={description}
+                      onChange={(e) => handleChange(e, index, descIndex)}
+                  />
                 </div>
               ))}
-              <button type="button" onClick={() => handleAddDescription(index)}>Add Another Description</button>
+              <button className="another-detail-btn" type="button" onClick={() => handleAddDescription(index)}>Add Description</button>
               <br />
-            </form>
+
+              </form>
           ))}
-          <button onClick={handleAddExperience}>Add Another Experience</button>
-          <button type="submit" onClick={handleSubmit}>Submit All</button>
+            <div className="button-container2">
+              <button className="another-experience-btn" onClick={handleAddExperience}>Add Experience</button>
+              <button className="submit-all-btn"type="submit" onClick={handleSubmit}>Submit</button>
+            </div>
+
+
         </div>
       )}
     </div>

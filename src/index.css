@@ -12,7 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body, html {
+  min-height: 100%;
+  /* overflow-x: hidden; */
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   margin: 0;
@@ -35,21 +41,17 @@ button {
 }
 
 .toggle-icon {
-  border-radius: 8px;
-  border: 1px solid grey;
-  border-radius: 6px;
+  border-radius: 10px;
+  border: 1px solid black;
   padding: 8px;
   margin-right: 27px;
-  transition: background-color 0.25s;
-  transition: border-color 0.25s;
-
+  transition: background-color 0.3s;
 }
 
-/* .toggle-icon:hover {
-  background-color: #fafafa;
-  border-color: #dddddd;
-  color: grey;
-} */
+.toggle-icon:hover {
+  background-color: black;
+  color: white;
+}
 
 
 
@@ -64,28 +66,42 @@ button:focus-visible {
 }
 
 
+.components-div {
+  padding: 25px;
+  border: solid black;
+}
+
+
+
 .cv-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 210mm;
-  min-height: 297mm;
+  height: 297mm;
   transform: scale(0.75);
   transform-origin: top center;
   padding: 10mm;
-  margin: auto;
+  margin-top: 20px;
+  /* margin: auto; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background: white;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  line-height: 1.25;
   border: 1px solid #d3d3d3;
+  page-break-after: always;
 }
 
-.personal-info, .educational-info {
-  border: solid grey;
+
+.personal-info, .educational-info, .practical-info, .project-info {
+  border: solid black;
   border-radius: 10px;
-  min-width: 400px;
+  min-width: 450px;
   padding: 15px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
   /* align-items: center; Aligns children (form-header and form) centrally */
 }
 
@@ -105,12 +121,27 @@ button:focus-visible {
 
 
 
-.personal-info-form, .educational-info-form {
+.personal-info-form, .educational-info-form, .practical-info-form, .project-info-form {
   width: 100%; /* Match width to ensure alignment with the toggle icon */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+.personal-name {
+  font-size: 35px;
+}
+
+.personal-info-display {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.1;
+}
+
 
 /* .educational-info-form {
   width: 100%;
@@ -119,7 +150,7 @@ button:focus-visible {
 
 .form-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 90%;
   margin-bottom: 10px;
@@ -138,6 +169,10 @@ button:focus-visible {
   margin-right: 10px;
 }
 
+.form-row .details {
+  margin-right: -7px;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -152,8 +187,12 @@ button:focus-visible {
   /* width: 100%; */
 }
 
-.another-education-btn {
+.another-education-btn, .another-experience-btn, .another-project-btn {
   margin-bottom: 10px;
+}
+
+.another-detail-btn {
+  margin-top: 10px;
 }
 
 
@@ -169,15 +208,28 @@ button:focus-visible {
   margin-bottom: 4px;
 }
 
+.remove-btn {
+  background-color: transparent;
+  padding: 0;
+  margin-right: 2px;
+}
+.remove-btn:hover {
+  background-color: transparent;
+}
 
+
+.education-title, .experience-title, .project-title {
+  border-bottom: 0.4px solid black;
+}
+
+.description-title {
+  margin-top: -17px;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: black;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
   }
   button {
     background-color: #f9f9f9;
