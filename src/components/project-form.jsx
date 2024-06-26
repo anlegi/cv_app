@@ -64,10 +64,8 @@ function ProjectInfoForm({ onSubmit }) {
   <div className="project-info">
     <h2 className="form-header" onClick={toggleFormVisibility}>
       <span>Projects</span>
-      <span className="toggle-icon">
-        {isCollapsed
-        ? <i className="fa-solid fa-chevron-down"></i>
-        : <i className="fa-solid fa-chevron-up"></i>}
+      <span className={"toggle-icon " + (isCollapsed ? "" : "rotated")}>
+        <i className="fa-solid fa-chevron-down"></i>
       </span>
     </h2>
     {!isCollapsed && (

@@ -49,6 +49,7 @@ function CVBuilder() {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div className="components-div">
+          <h1 className="resume-title">Build Your Resume</h1>
             <PersonalInfoForm onSubmit={handlePersonalInfo} />
             <EducationalInfoForm onSubmit={handleEducationalInfo} />
             <PracticalInfoForm onSubmit={handlePracticalInfo} />

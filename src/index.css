@@ -53,6 +53,14 @@ button {
   color: white;
 }
 
+.toggle-icon i {
+  display: inline-block; /* Make sure the icon behaves as a block for transformations */
+  transition: transform 0.3s ease; /* Apply transition to the transform property */
+}
+
+.toggle-icon.rotated i {
+  transform: rotate(180deg); /* Rotate the icon when the class "rotated" is added */
+}
 
 
 
@@ -187,6 +195,7 @@ button:focus-visible {
   /* width: 100%; */
 }
 
+
 .another-education-btn, .another-experience-btn, .another-project-btn, .another-skill-btn {
   margin-bottom: 10px;
 }
@@ -240,6 +249,13 @@ button:focus-visible {
   text-indent: -1.4em; /* Pulls bullet points to the left */
   padding-left: 1.5em; /* Pushes text to start right after the bullet point */
 }
+
+
+.resume-title {
+  display: flex;
+  justify-content: center;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

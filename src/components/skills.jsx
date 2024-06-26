@@ -28,10 +28,8 @@ function SkillInfoForm({ onSubmit }) {
     <div className="skill-info">
       <h2 className="form-header" onClick={toggleFormVisibility}>
         <span>Skills</span>
-        <span className="toggle-icon">
-          {isCollapsed
-          ? <i className="fa-solid fa-chevron-down"></i>
-          : <i className="fa-solid fa-chevron-up"></i>}
+        <span className={"toggle-icon " + (isCollapsed ? "" : "rotated")}>
+          <i className="fa-solid fa-chevron-down"></i>
         </span>
       </h2>
       {!isCollapsed && (
