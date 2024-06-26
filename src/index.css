@@ -94,7 +94,7 @@ button:focus-visible {
 }
 
 
-.personal-info, .educational-info, .practical-info, .project-info {
+.personal-info, .educational-info, .practical-info, .project-info, .skill-info{
   border: solid black;
   border-radius: 10px;
   min-width: 450px;
@@ -121,7 +121,7 @@ button:focus-visible {
 
 
 
-.personal-info-form, .educational-info-form, .practical-info-form, .project-info-form {
+.personal-info-form, .educational-info-form, .practical-info-form, .project-info-form, .skill-info-form {
   width: 100%; /* Match width to ensure alignment with the toggle icon */
   display: flex;
   flex-direction: column;
@@ -218,12 +218,27 @@ button:focus-visible {
 }
 
 
-.education-title, .experience-title, .project-title {
+.education-title, .experience-title, .project-title, .skill-title {
   border-bottom: 0.4px solid black;
 }
 
+
 .description-title {
   margin-top: -17px;
+}
+
+.date-title {
+  margin-top: -17px;
+}
+
+.cv-container ul {
+  list-style-position: inside; /* Ensures bullets are inside the text block */
+  padding-left: 0; /* Removes default padding */
+}
+
+.cv-container li {
+  text-indent: -1.4em; /* Pulls bullet points to the left */
+  padding-left: 1.5em; /* Pushes text to start right after the bullet point */
 }
 
 @media (prefers-color-scheme: light) {

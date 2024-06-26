@@ -3,6 +3,7 @@ import PersonalInfoForm from "./personal-info-form.jsx"
 import EducationalInfoForm from "./educational-experience-form.jsx"
 import PracticalInfoForm from "./practical-experience-form.jsx"
 import ProjectInfoForm from "./project-form.jsx"
+import SkillInfoForm from "./skills.jsx"
 import CVDisplay from "./cv-display.jsx"
 
 function CVBuilder() {
@@ -11,6 +12,7 @@ function CVBuilder() {
     educationalInfo: [],
     practicalInfo: [],
     projectInfo: [],
+    skillInfo: [],
   })
 
 
@@ -38,6 +40,12 @@ function CVBuilder() {
       projectInfo: newData }))
   }
 
+  const handleSkillInfo = (newData) => {
+    setCvData(prevData => ({
+      ...prevData,
+      skillInfo: newData }))
+  }
+
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div className="components-div">
@@ -45,6 +53,7 @@ function CVBuilder() {
             <EducationalInfoForm onSubmit={handleEducationalInfo} />
             <PracticalInfoForm onSubmit={handlePracticalInfo} />
             <ProjectInfoForm onSubmit={handleProjectInfo} />
+            <SkillInfoForm onSubmit={handleSkillInfo} />
         </div>
         <CVDisplay data={cvData} />
     </div>
