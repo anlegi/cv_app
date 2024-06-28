@@ -26,7 +26,27 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  flex-direction: column;
 }
+
+footer {
+  text-align: center;
+  padding: 1em 0;
+  background-color: #ffffff;
+  width: 100%;
+  border-bottom: 0.4px solid black;
+  font-size: 12px;
+}
+
+footer a {
+  text-decoration: none;
+  color: black;
+}
+
+footer a:hover {
+  color: grey;
+}
+
 
 
 button {
